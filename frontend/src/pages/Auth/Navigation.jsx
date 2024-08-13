@@ -35,10 +35,10 @@ const Navigation = () => {
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50 bg-[#0f0f0f] border w-48 px-4 py-2 rounded-lg shadow-lg">
-      <section className="flex items-center space-x-4">
+    <div className="fixed top-4 right-4 z-50 bg-[#0f0f0f] border w-48 px-4 py-2 rounded-lg shadow-lg flex flex-col justify-between h-96">
+      <section className="flex flex-col space-y-4">
         {/* Icons for all users */}
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-col items-center space-y-4">
           <Link
             to="/"
             className="flex items-center transition-transform transform hover:scale-105 hover:text-white"
@@ -135,6 +135,34 @@ const Navigation = () => {
           )}
         </div>
       </section>
+
+      {/* Bottom Section with Home, Dashboard, and Logout */}
+      <div className="flex flex-col space-y-4 mt-auto">
+        <Link
+          to="/"
+          className="flex items-center justify-center transition-transform transform hover:scale-105 hover:text-white"
+        >
+          <AiOutlineHome size={24} />
+        </Link>
+
+        {userInfo?.isAdmin && (
+          <Link
+            to="/admin/movies/dashboard"
+            className="flex items-center justify-center transition-transform transform hover:scale-105 hover:text-white"
+          >
+            Dashboard
+          </Link>
+        )}
+
+        {userInfo && (
+          <button
+            onClick={logoutHandler}
+            className="flex items-center justify-center transition-transform transform hover:scale-105 hover:text-white"
+          >
+            <AiOutlineLogin size={24} />
+          </button>
+        )}
+      </div>
     </div>
   );
 };
